@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components"
 import logo from "../image (23).png";
 import {
@@ -18,6 +18,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
 export default function Post({postText}) {
+    const [likes, setLikes] = useState(0);
+
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
@@ -30,12 +32,14 @@ export default function Post({postText}) {
             </NewsfeedCardContentHeading>
             <PostText>{postText}</PostText>
             <div>
-                <CommentCount>0 Likes &#8226; 0 Comments</CommentCount>
+                <span style={{color: likes > 0 ? secondaryTextColor : grayedOutTextColor}}>{likes} Likes</span>
+                <span>&nbsp;&#8226;&nbsp;</span>
+                <span style={{color: grayedOutTextColor}}>0 Comments</span>
             </div>
         </NewsfeedCardContentTop>
         <CommentSection>
             <LikeAndComment>
-                <LikeCommentItem><FontAwesomeIcon icon={faHeart}/> Like</LikeCommentItem>
+                <LikeCommentItem onClick={() => {setLikes(likes + 1)}}><FontAwesomeIcon icon={faHeart}/> Like</LikeCommentItem>
                 <LikeCommentItem><FontAwesomeIcon icon={faCommentDots}/> Comment</LikeCommentItem>
             </LikeAndComment>
         </CommentSection>
@@ -49,13 +53,19 @@ const LikeAndComment = styled.div`
     display: flex;
 `;
 
-const LikeCommentItem = styled.div`
+const LikeCommentItem = styled.button`
     margin-right: 1rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: ${secondaryTextColor};
+    font-size: 1rem;
+    
+    :hover {
+        color: ${primaryTextColor}
+    }
 `;
-
-const CommentCount = styled.div`
-    color: ${grayedOutTextColor};
-`;
+LikeCommentItem.displayName = "LikeCommentItem";
 
 const CommentSection = styled.div`
     padding: 1rem 2rem;

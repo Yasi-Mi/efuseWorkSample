@@ -17,17 +17,26 @@ import {
 } from "../sharedStyles/StyledComponents";
 
 export default function PostForm({onPost}) {
-    const [text, updateText] = useState("");
+    const [text, setText] = useState("");
+
+    const updateText = (event) => {
+        setText(event.target.value)
+    };
+
+    const postForm = () => {
+        text && onPost(text)
+        setText("")
+    }
 
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
                 <AvatarFlex><Avatar src={logo} alt="avatar"/></AvatarFlex>
-                <TextArea placeholder={"What is on your mind?"} onChange={(event) => updateText(event.target.value)}/>
+                <TextArea value={text} placeholder={"What is on your mind?"} onChange={updateText}/>
             </NewsfeedCardContentHeading>
         </NewsfeedCardContentTop>
         <ButtonArea>
-            <PostButton onClick={() => text && onPost(text)}>Post It</PostButton>
+            <PostButton onClick={postForm}>Post It</PostButton>
         </ButtonArea>
     </NewsfeedCard>
 }
