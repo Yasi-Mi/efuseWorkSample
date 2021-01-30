@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from "enzyme";
 import Newsfeed from "./Newsfeed";
 import PostForm from "./PostForm";
+import Post from "./Post";
 
 describe("Newsfeed", () => {
     let wrapper;
@@ -18,7 +19,7 @@ describe("Newsfeed", () => {
         })
 
         it("renders the post", () => {
-            expect(wrapper.text()).toContain(postText);
+            expect(wrapper.find(Post).props().postText).toContain(postText);
         })
     })
 
@@ -32,8 +33,8 @@ describe("Newsfeed", () => {
         })
 
         it("renders both posts", () => {
-            expect(wrapper.text()).toContain(firstPost);
-            expect(wrapper.text()).toContain(secondPost);
+            expect(wrapper.find(Post).at(0).props().postText).toEqual(firstPost);
+            expect(wrapper.find(Post).at(1).props().postText).toContain(secondPost);
         });
     })
 })

@@ -2,56 +2,39 @@ import React, {useState} from "react";
 import logo from "../image (23).png";
 import styled from "styled-components"
 import {
-    borderGray,
-    placeholderTextColor,
+    secondaryTextColor,
     primaryButtonColor,
     primaryButtonHover,
     primaryButtonTextColor,
     primaryTextColor
-} from "../colors";
+} from "../sharedStyles/colors";
+import {
+    Avatar,
+    AvatarFlex,
+    NewsfeedCard,
+    NewsfeedCardContentHeading,
+    NewsfeedCardContentTop
+} from "../sharedStyles/StyledComponents";
 
 export default function PostForm({onPost}) {
     const [text, updateText] = useState("");
 
-    return <PostFormStyle>
-        <FlexArea>
-            <AvatarFlex><Avatar src={logo} alt="avatar"/></AvatarFlex>
-            <TextArea placeholder={"What is on your mind?"} onChange={(event) => updateText(event.target.value)}/>
-        </FlexArea>
+    return <NewsfeedCard>
+        <NewsfeedCardContentTop>
+            <NewsfeedCardContentHeading>
+                <AvatarFlex><Avatar src={logo} alt="avatar"/></AvatarFlex>
+                <TextArea placeholder={"What is on your mind?"} onChange={(event) => updateText(event.target.value)}/>
+            </NewsfeedCardContentHeading>
+        </NewsfeedCardContentTop>
         <ButtonArea>
             <PostButton onClick={() => text && onPost(text)}>Post It</PostButton>
         </ButtonArea>
-    </PostFormStyle>
+    </NewsfeedCard>
 }
-
-const FlexArea = styled.div`
-    display: flex;
-    border-bottom: 1px solid ${borderGray};
-    padding: 1rem;
-`
-
-const AvatarFlex = styled.div`
-    flex-grow: 1;
-`
 
 const ButtonArea = styled.div`
     text-align: right;
     padding: 1rem;
-`
-
-const Avatar = styled.img`
-    object-fit: cover;
-    height: 4rem;
-    width: 4rem;
-    margin: 0 1rem;
-    border-radius: 4rem;
-    border: 1px solid black;
-`
-const PostFormStyle = styled.div`
-    background-color: #ffffff;
-    border-radius: 1rem;
-    filter: drop-shadow(0 2px 2px #333333);
-    flex-grow: 4;
 `
 
 const TextArea = styled.textarea`
@@ -66,7 +49,7 @@ const TextArea = styled.textarea`
     font-size: 1.4rem;
     
     ::placeholder {
-        color: ${placeholderTextColor}
+        color: ${secondaryTextColor}
     }
 `
 TextArea.displayName = "TextArea";
