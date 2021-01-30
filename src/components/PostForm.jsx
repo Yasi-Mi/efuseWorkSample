@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from "../image (23).png";
 import styled from "styled-components"
 import {
@@ -10,14 +10,16 @@ import {
     primaryTextColor
 } from "../colors";
 
-export default function PostForm() {
+export default function PostForm({onPost}) {
+    const [text, updateText] = useState("");
+
     return <PostFormStyle>
         <FlexArea>
             <AvatarFlex><Avatar src={logo} alt="avatar"/></AvatarFlex>
-            <TextArea placeholder={"What is on your mind?"}/>
+            <TextArea placeholder={"What is on your mind?"} onChange={(event) => updateText(event.target.value)}/>
         </FlexArea>
         <ButtonArea>
-            <PostButton>Post It</PostButton>
+            <PostButton onClick={() => text && onPost(text)}>Post It</PostButton>
         </ButtonArea>
     </PostFormStyle>
 }
@@ -55,18 +57,19 @@ const PostFormStyle = styled.div`
 const TextArea = styled.textarea`
     border: none;
     resize: none;
-    padding: 1.5rem 0;
+    padding: 1.3rem 0;
     outline: none;
     color: ${primaryTextColor};
     font-weight: bold;
     width: 90%;
     min-height: 7rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     
     ::placeholder {
         color: ${placeholderTextColor}
     }
 `
+TextArea.displayName = "TextArea";
 
 const PostButton = styled.button`
     border: none;
@@ -82,3 +85,4 @@ const PostButton = styled.button`
         background-color: ${primaryButtonHover};
     }
 `
+PostButton.displayName = "PostButton"
