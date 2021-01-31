@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import PostForm from "./PostForm";
+import PostForm from "../PostForm/PostForm";
 import styled from "styled-components"
-import Post from "./Post";
+import Post from "../Post/Post";
 
 export default function Newsfeed() {
     const [posts, updatePosts] = useState([])

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from "enzyme";
 import Newsfeed from "./Newsfeed";
-import PostForm from "./PostForm";
-import Post from "./Post";
+import PostForm from "../PostForm/PostForm";
+import Post from "../Post/Post";
 
 describe("Newsfeed", () => {
     let wrapper;

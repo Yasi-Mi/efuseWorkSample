@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from "enzyme";
 import Post from "./Post";
+import LikeCommentSection from "../LikeCommentSection/LikeCommentSection";
 
 describe("Post", () => {
     let wrapper;
@@ -16,7 +17,7 @@ describe("Post", () => {
 
     describe("when the user presses the like button", () => {
         beforeEach(() => {
-            wrapper.find("LikeCommentItem").at(0).simulate("click")
+            wrapper.find(LikeCommentSection).props().onLike();
         });
 
         it("increments the likes", () => {

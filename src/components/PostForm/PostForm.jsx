@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import logo from "../image (23).png";
+import logo from "../../image (23).png";
 import styled from "styled-components"
 import {
     secondaryTextColor,
@@ -7,14 +7,14 @@ import {
     primaryButtonHover,
     primaryButtonTextColor,
     primaryTextColor
-} from "../sharedStyles/colors";
+} from "../../sharedStyles/colors";
 import {
     Avatar,
     AvatarFlex,
     NewsfeedCard,
     NewsfeedCardContentHeading,
     NewsfeedCardContentTop
-} from "../sharedStyles/StyledComponents";
+} from "../../sharedStyles/StyledComponents";
 
 export default function PostForm({onPost}) {
     const [text, setText] = useState("");

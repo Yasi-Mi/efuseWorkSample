@@ -1,21 +1,22 @@
 import React, {useState} from "react";
 import styled from "styled-components"
-import logo from "../image (23).png";
+import logo from "../../image (23).png";
 import {
     Avatar,
     NewsfeedCard,
     NewsfeedCardContentHeading,
     NewsfeedCardContentTop
-} from "../sharedStyles/StyledComponents";
+} from "../../sharedStyles/StyledComponents";
 import {
     commentSectionBackground,
     grayedOutTextColor,
     locationTextColor,
     primaryTextColor,
     secondaryTextColor
-} from "../sharedStyles/colors";
+} from "../../sharedStyles/colors";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import LikeCommentSection from "../LikeCommentSection/LikeCommentSection";
 
 export default function Post({postText}) {
     const [likes, setLikes] = useState(0);
@@ -37,42 +38,9 @@ export default function Post({postText}) {
                 <span style={{color: grayedOutTextColor}}>0 Comments</span>
             </div>
         </NewsfeedCardContentTop>
-        <CommentSection>
-            <LikeAndComment>
-                <LikeCommentItem onClick={() => {setLikes(likes + 1)}}><FontAwesomeIcon icon={faHeart}/> Like</LikeCommentItem>
-                <LikeCommentItem><FontAwesomeIcon icon={faCommentDots}/> Comment</LikeCommentItem>
-            </LikeAndComment>
-        </CommentSection>
+        <LikeCommentSection onLike={() => {setLikes(likes + 1)}}/>
     </NewsfeedCard>
 }
-
-const LikeAndComment = styled.div`
-    color: ${secondaryTextColor};
-    font-size: 1rem;
-    font-weight: bold;
-    display: flex;
-`;
-
-const LikeCommentItem = styled.button`
-    margin-right: 1rem;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: ${secondaryTextColor};
-    font-size: 1rem;
-    
-    :hover {
-        color: ${primaryTextColor}
-    }
-`;
-LikeCommentItem.displayName = "LikeCommentItem";
-
-const CommentSection = styled.div`
-    padding: 1rem 2rem;
-    background-color: ${commentSectionBackground};
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-`
 
 const PostText = styled.div`
     color: ${primaryTextColor};
