@@ -1,11 +1,11 @@
 import "./App.css";
-import Newsfeed from "./components/Newsfeed/Newsfeed";
 import React from "react";
+import NewsfeedContainer from "./components/Newsfeed/NewsfeedContainer";
 
 function App() {
   return (
     <div>
-      <Newsfeed/>
+      <NewsfeedContainer/>
     </div>
   );
 }

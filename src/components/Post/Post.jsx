@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components"
-import logo from "../../image (23).png";
 import {
     Avatar,
     NewsfeedCard,
@@ -8,19 +7,17 @@ import {
     NewsfeedCardContentTop
 } from "../../sharedStyles/StyledComponents";
 import {
-    commentSectionBackground,
     grayedOutTextColor,
     locationTextColor,
     primaryTextColor,
     secondaryTextColor
 } from "../../sharedStyles/colors";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt, faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
-import LikeCommentSection from "../LikeCommentSection/LikeCommentSection";
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import CommentSectionContainer from "../CommentSection/CommentSectionContainer";
+import logo from "../../image (23).png"
 
-export default function Post({postText}) {
-    const [likes, setLikes] = useState(0);
-
+export default function Post({post}) {
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
@@ -31,14 +28,14 @@ export default function Post({postText}) {
                     <TimePosted>1 minute ago</TimePosted>
                 </div>
             </NewsfeedCardContentHeading>
-            <PostText>{postText}</PostText>
+            <PostText>{post.content}</PostText>
             <div>
-                <span style={{color: likes > 0 ? secondaryTextColor : grayedOutTextColor}}>{likes} Likes</span>
+                <span style={{color: post.likes > 0 ? secondaryTextColor : grayedOutTextColor}}>{post.likes} Likes</span>
                 <span>&nbsp;&#8226;&nbsp;</span>
                 <span style={{color: grayedOutTextColor}}>0 Comments</span>
             </div>
         </NewsfeedCardContentTop>
-        <LikeCommentSection onLike={() => {setLikes(likes + 1)}}/>
+        <CommentSectionContainer postID={post.id}/>
     </NewsfeedCard>
 }
 

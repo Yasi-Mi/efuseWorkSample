@@ -1,14 +1,12 @@
-import React, {useState} from "react";
-import PostForm from "../PostForm/PostForm";
+import React from "react";
 import styled from "styled-components"
 import Post from "../Post/Post";
+import PostFormContainer from "../PostForm/PostFormContainer";
 
-export default function Newsfeed() {
-    const [posts, updatePosts] = useState([])
-
+export default function Newsfeed({posts}) {
     return <NewsfeedStyle>
-        <PostForm onPost={(newPost) => updatePosts([...posts, newPost])}/>
-        {posts.map((post, index) => <Post key={`nf-post-${index}`} postText={post}/>)}
+        <PostFormContainer/>
+        {posts.map(post => <Post key={`nf-post-${post.id}`} post={post}/>)}
     </NewsfeedStyle>
 }
 

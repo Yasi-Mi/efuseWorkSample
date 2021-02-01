@@ -1,27 +1,23 @@
 import React from 'react';
 import { shallow } from "enzyme";
 import Post from "./Post";
-import LikeCommentSection from "../LikeCommentSection/LikeCommentSection";
 
 describe("Post", () => {
     let wrapper;
-    const postText = "hello world"
+    const post = {
+        content: "hello world",
+        likes: 1
+    }
 
     beforeEach(() => {
-        wrapper = shallow(<Post postText={postText}/>)
+        wrapper = shallow(<Post post={post}/>)
     })
 
     it("renders the text", () => {
-        expect(wrapper.text()).toContain(postText)
+        expect(wrapper.text()).toContain(post.content)
     })
 
-    describe("when the user presses the like button", () => {
-        beforeEach(() => {
-            wrapper.find(LikeCommentSection).props().onLike();
-        });
-
-        it("increments the likes", () => {
-            expect(wrapper.text()).toContain("1 Likes")
-        });
+    it("renders the number of likes", () => {
+        expect(wrapper.text()).toContain("1 Likes")
     })
 })

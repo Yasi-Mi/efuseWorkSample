@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import logo from "../../image (23).png";
 import styled from "styled-components"
 import {
     secondaryTextColor,
@@ -16,7 +15,7 @@ import {
     NewsfeedCardContentTop
 } from "../../sharedStyles/StyledComponents";
 
-export default function PostForm({onPost}) {
+export default function PostForm({avatar, onPost}) {
     const [text, setText] = useState("");
 
     const updateText = (event) => {
@@ -31,7 +30,7 @@ export default function PostForm({onPost}) {
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
-                <AvatarFlex><Avatar src={logo} alt="avatar"/></AvatarFlex>
+                <AvatarFlex><Avatar src={`avatars/${avatar}`} alt="avatar"/></AvatarFlex>
                 <TextArea value={text} placeholder={"What is on your mind?"} onChange={updateText}/>
             </NewsfeedCardContentHeading>
         </NewsfeedCardContentTop>

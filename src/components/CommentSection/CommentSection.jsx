@@ -4,7 +4,7 @@ import {faCommentDots, faHeart} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import {commentSectionBackground, primaryTextColor, secondaryTextColor} from "../../sharedStyles/colors";
 
-export default function LikeCommentSection({onLike}) {
+export default function CommentSection({onLike}) {
     return <LikeCommentSectionStyle>
         <LikeCommentButtons>
             <LikeCommentButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like</LikeCommentButton>
