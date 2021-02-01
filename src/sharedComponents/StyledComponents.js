@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {borderGray, grayedOutTextColor, primaryTextColor, secondaryTextColor} from "./colors";
+import {borderGray, grayedOutTextColor, secondaryTextColor} from "./colors";
 
 export const ReactionCount = styled.span`
     color: ${props => props.count > 0 ? secondaryTextColor : grayedOutTextColor}
