@@ -19,7 +19,7 @@ describe("CommentSection", () => {
 
     describe("when the user presses the like button", () => {
         beforeEach(() => {
-            wrapper.find("PostActionButton").at(0).simulate("click")
+            wrapper.find("InteractButton").at(0).simulate("click")
         })
 
         it("calls onLike", () => {
@@ -34,7 +34,7 @@ describe("CommentSection", () => {
 
         describe("when the user presses the comment button", () => {
             beforeEach(() => {
-                wrapper.find("PostActionButton").at(1).simulate("click")
+                wrapper.find("InteractButton").at(1).simulate("click")
             })
 
             it("expands the comments section and allows the user to add a comment", () => {

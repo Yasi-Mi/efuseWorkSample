@@ -63,6 +63,7 @@ EditCommentInput.displayName = "EditCommentInput"
 
 const CommentActions = styled.div`
     color: ${secondaryTextColor};
+    font-size: 0.8rem;
 `
 
 const AvatarMargin = styled.div`
@@ -80,12 +81,14 @@ const Name = styled.div`
 `
 
 const Occupation = styled.div`
-    color: ${blueTextColor}
+    color: ${blueTextColor};
+    font-size: 0.8rem;
 `
 
 const CommentTimeStyle = styled.div`
     color: ${secondaryTextColor};
     text-align: right;
+    font-size: 0.6rem;
 `
 
 const CommentStyle = styled.div`
@@ -100,7 +103,6 @@ const CommentContent = styled.div`
 const CommentBox = styled.div`
     background-color: ${commentBackground};
     width: 85%;
-    margin: .5rem;
     border-radius: .5rem;
     padding: 1rem;
 `

@@ -39,7 +39,7 @@ describe("Comment", () => {
 
     describe("when the user presses the like button", () => {
         beforeEach(() => {
-            wrapper.find("PostActionButton").at(0).simulate("click")
+            wrapper.find("InteractButton").at(0).simulate("click")
         })
 
         it("calls onLike", () => {
@@ -49,7 +49,7 @@ describe("Comment", () => {
 
     describe("when the user presses the delete button", () => {
         beforeEach(() => {
-            wrapper.find("PostActionButton").at(2).simulate("click")
+            wrapper.find("InteractButton").at(2).simulate("click")
         })
 
         it("calls onDelete", () => {
@@ -61,7 +61,7 @@ describe("Comment", () => {
         const newText = "new Text";
 
         beforeEach(() => {
-            wrapper.find("PostActionButton").at(1).simulate("click")
+            wrapper.find("InteractButton").at(1).simulate("click")
         })
 
         it("makes the input editable", () => {
@@ -97,7 +97,7 @@ describe("Comment", () => {
 
         describe("then the user presses the edit button again", () => {
             beforeEach(() => {
-                wrapper.find("PostActionButton").at(1).simulate("click")
+                wrapper.find("InteractButton").at(1).simulate("click")
             })
 
             it("makes the input no longer editable", () => {

@@ -29,7 +29,7 @@ export default function CommentSection({onLike, onComment, avatar, comments, pos
 }
 
 const LikeCommentSectionStyle = styled.div`
-    padding: 1rem 2rem;
+    padding: 1rem;
     background-color: ${commentSectionBackground};
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;

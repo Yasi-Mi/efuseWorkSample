@@ -11,8 +11,8 @@ const InteractButtonStyle = styled.button`
     background: transparent;
     border: none;
     outline: none;
+    font-size: inherit;
     color: ${secondaryTextColor};
-    font-size: 1rem;
     
     :hover {
         color: ${primaryTextColor}
