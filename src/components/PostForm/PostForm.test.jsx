@@ -8,6 +8,8 @@ describe("PostForm", () => {
 
     beforeEach(() => {
         wrapper = shallow(<PostForm onPost={mockOnPost}/>)
+        Date.now = jest.fn()
+        Date.now.mockReturnValue(Date.parse("2021-01-01"))
     })
 
     describe("when the user enters text", () => {
@@ -24,7 +26,11 @@ describe("PostForm", () => {
 
             it("calls onPost with the text", () => {
                 expect(mockOnPost.mock.calls.length).toEqual(1);
-                expect(mockOnPost.mock.calls[0]).toEqual([postText])
+                expect(mockOnPost.mock.calls[0][0]).toEqual(postText)
+            })
+
+            it("calls onPost with the current time", () => {
+                expect(mockOnPost.mock.calls[0][1]).toEqual("2021-01-01T00:00:00.000Z")
             })
         })
     })

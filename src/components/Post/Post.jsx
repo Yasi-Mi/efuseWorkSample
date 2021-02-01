@@ -15,8 +15,11 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 import CommentSectionContainer from "../CommentSection/CommentSectionContainer";
+import moment from "moment";
 
 export default function Post({post}) {
+    const minutesDiff = moment().diff(post.postedTime, "minutes")
+
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
@@ -24,7 +27,7 @@ export default function Post({post}) {
                 <div>
                     <Name>Yasi Minachi</Name>
                     <Location><FontAwesomeIcon icon={faMapMarkerAlt}/> {post.location}</Location>
-                    <TimePosted>1 minute ago</TimePosted>
+                    <TimePosted>{minutesDiff} {minutesDiff === 1 ? "minute" : "minutes"} ago</TimePosted>
                 </div>
             </NewsfeedCardContentHeading>
             <PostText>{post.content}</PostText>

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import styled from "styled-components"
+import styled from "styled-components";
+import moment from "moment";
 import {
     primaryButtonColor,
     primaryButtonHover,
@@ -23,7 +24,7 @@ export default function PostForm({avatar, onPost}) {
     };
 
     const postForm = () => {
-        text && onPost(text)
+        text && onPost(text, moment().toISOString())
         setText("")
     }
 
