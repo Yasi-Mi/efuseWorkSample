@@ -1,24 +1,27 @@
 import {newsfeedReducer} from "./newsfeedReducer";
-import {ADD_POST_ACTION_TYPE, LIKE_POST_ACTION} from "./actionTypes";
+import {addCommentAction, addPostAction, likePostAction} from "./actionCreators";
 
 describe("newsfeedReducer", () => {
 
     const oldState = {
         currentUser: {
             name: "this guy",
-            avatar: "thisguy.png"
+            avatar: "thisguy.png",
+            occupation: "dev"
         },
         currentLocation: "Antarctica",
         posts: [
             {
                 id: "A",
                 content: "something",
-                likes: 1
+                likes: 1,
+                comments: []
             },
             {
                 id: "B",
                 content: "something else",
-                likes: 1
+                likes: 1,
+                comments: []
             }
         ]
     }
@@ -26,13 +29,7 @@ describe("newsfeedReducer", () => {
     let newState;
 
     describe("add a post", () => {
-        const action = {
-            type: ADD_POST_ACTION_TYPE,
-            payload: {
-                content: "HELLO WORLD",
-                postedTime: "2020-10-10"
-            }
-        }
+        const action = addPostAction("HELLO WORLD", "2020-10-10")
 
         beforeEach(() => {
             newState = newsfeedReducer(oldState, action)
@@ -52,12 +49,7 @@ describe("newsfeedReducer", () => {
     });
 
     describe("like a post", () => {
-        const action = {
-            type: LIKE_POST_ACTION,
-            payload: {
-                postID: "B"
-            }
-        }
+        const action = likePostAction("B")
 
         beforeEach(() => {
             newState = newsfeedReducer(oldState, action);
@@ -69,6 +61,30 @@ describe("newsfeedReducer", () => {
 
         it("does not increment other posts", () => {
             expect(newState.posts[0].likes).toEqual(1);
+        })
+    })
+
+    describe("commenting on a post", () => {
+        const action = addCommentAction("B", "hello hello hello", "2020-11-10")
+
+        beforeEach(() => {
+            newState = newsfeedReducer(oldState, action);
+        })
+
+        it("adds the comment to the post", () => {
+            expect(newState.posts[1].comments.length).toEqual(1);
+            expect(newState.posts[1].comments[0].content).toEqual("hello hello hello");
+            expect(newState.posts[1].comments[0].postedTime).toEqual("2020-11-10");
+        })
+
+        it("adds user information to the comment", () => {
+            expect(newState.posts[1].comments[0].username).toEqual("this guy");
+            expect(newState.posts[1].comments[0].userAvatar).toEqual("thisguy.png");
+            expect(newState.posts[1].comments[0].occupation).toEqual("dev");
+        })
+
+        it("only adds the comment to the correct post", () => {
+            expect(newState.posts[0].comments.length).toEqual(0);
         })
     })
 });

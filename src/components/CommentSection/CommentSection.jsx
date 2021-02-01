@@ -1,15 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCommentDots, faHeart} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import {commentSectionBackground, primaryTextColor, secondaryTextColor} from "../../sharedStyles/colors";
+import AddCommentContainer from "../AddComment/AddCommentContainer";
 
 export default function CommentSection({onLike}) {
+    const [addCommentExpanded, setAddCommentExpanded] = useState(false);
+
+    const onCommentClick = () => {
+        setAddCommentExpanded(!addCommentExpanded)
+    }
+
     return <LikeCommentSectionStyle>
         <LikeCommentButtons>
             <LikeCommentButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like</LikeCommentButton>
-            <LikeCommentButton><FontAwesomeIcon icon={faCommentDots}/> Comment</LikeCommentButton>
+            <LikeCommentButton onClick={onCommentClick}><FontAwesomeIcon icon={faCommentDots}/> Comment</LikeCommentButton>
         </LikeCommentButtons>
+        {addCommentExpanded && <AddCommentContainer/>}
     </LikeCommentSectionStyle>
 }
 
