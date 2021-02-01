@@ -15,16 +15,15 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import CommentSectionContainer from "../CommentSection/CommentSectionContainer";
-import logo from "../../image (23).png"
 
 export default function Post({post}) {
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
-                <Avatar src={logo} alt="avatar"/>
+                <Avatar src={`avatars/${post.userAvatar}`} alt="avatar"/>
                 <div>
                     <Name>Yasi Minachi</Name>
-                    <Location><FontAwesomeIcon icon={faMapMarkerAlt}/> OH, USA</Location>
+                    <Location><FontAwesomeIcon icon={faMapMarkerAlt}/> {post.location}</Location>
                     <TimePosted>1 minute ago</TimePosted>
                 </div>
             </NewsfeedCardContentHeading>
