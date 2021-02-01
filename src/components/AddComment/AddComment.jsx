@@ -3,8 +3,7 @@ import moment from "moment";
 import {AvatarSmall} from "../../sharedComponents/StyledComponents";
 import styled from "styled-components"
 import {primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
-
-const ENTER_KEY_CODE = 13
+import {ENTER_KEY_CODE} from "../constants";
 
 export default function AddComment({onComment, avatar}) {
     const [text, setText] = useState("")
@@ -14,7 +13,7 @@ export default function AddComment({onComment, avatar}) {
     }
 
     const onKeypress = event => {
-        if (event.charCode === ENTER_KEY_CODE) {
+        if (event.charCode === ENTER_KEY_CODE && text) {
             onComment(text, moment().toISOString())
             setText("")
         }

@@ -1,12 +1,32 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components"
 import {AvatarSmall, PostActionButton, ReactionCount} from "../../sharedComponents/StyledComponents";
 import {blueTextColor, commentBackground, primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
 import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/PostedTimeFormatted";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHeart, faPencilAlt, faTrash} from "@fortawesome/free-solid-svg-icons"
+import {ENTER_KEY_CODE} from "../constants";
 
-export default function Comment({comment, onLike}) {
+export default function Comment({comment, onLike, onEdit}) {
+    const [newContent, setNewContent] = useState(comment.content)
+    const [editMode, setEditMode] = useState(false)
+
+    const onEditClick = () => {
+        setEditMode(!editMode)
+        setNewContent(comment.content)
+    }
+
+    const onEditCommentChange = event => {
+        setNewContent(event.target.value);
+    }
+
+    const onKeypress = event => {
+        if (event.charCode === ENTER_KEY_CODE && editMode && newContent) {
+            onEdit(newContent)
+            setEditMode(false)
+        }
+    };
+
     return <CommentStyle>
         <AvatarMargin>
             <AvatarSmall src={`avatars/${comment.userAvatar}`}/>
@@ -19,16 +39,26 @@ export default function Comment({comment, onLike}) {
                 </div>
                 <CommentTimeStyle><PostedTimeFormatted postedTime={comment.postedTime}/></CommentTimeStyle>
             </CommentHeader>
-            <CommentContent>{comment.content}</CommentContent>
+            {editMode ?
+                <EditCommentInput value={newContent} onChange={onEditCommentChange} onKeyPress={onKeypress}/> :
+                <CommentContent>{comment.content}</CommentContent> }
             <CommentActions>
                 <ReactionCount count={comment.likes}>{comment.likes} Likes </ReactionCount> |
                 <PostActionButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like </PostActionButton> |
-                <PostActionButton><FontAwesomeIcon icon={faPencilAlt}/> Edit </PostActionButton> |
+                <PostActionButton onClick={onEditClick}><FontAwesomeIcon icon={faPencilAlt}/> Edit </PostActionButton> |
                 <PostActionButton><FontAwesomeIcon icon={faTrash}/> Delete</PostActionButton>
             </CommentActions>
         </CommentBox>
     </CommentStyle>
 }
+
+const EditCommentInput = styled.input`
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem;
+`;
+EditCommentInput.displayName = "EditCommentInput"
 
 const CommentActions = styled.div`
     color: ${secondaryTextColor};

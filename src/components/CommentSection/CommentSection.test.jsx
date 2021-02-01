@@ -29,7 +29,7 @@ describe("CommentSection", () => {
 
     describe("the add comment section", () => {
         it("does not show the add a comment section", () => {
-            expect(wrapper.find(AddCommentContainer).length).toEqual(0);
+            expect(wrapper.find(AddComment).length).toEqual(0);
         })
 
         describe("when the user presses the comment button", () => {

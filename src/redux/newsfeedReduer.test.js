@@ -1,5 +1,5 @@
 import {newsfeedReducer} from "./newsfeedReducer";
-import {addCommentAction, addPostAction, likeCommentAction, likePostAction} from "./actionCreators";
+import {addCommentAction, addPostAction, editCommentAction, likeCommentAction, likePostAction} from "./actionCreators";
 
 describe("newsfeedReducer", () => {
 
@@ -101,6 +101,18 @@ describe("newsfeedReducer", () => {
 
         it("increments the like of the comment", () => {
             expect(newState.posts[0].comments[0].likes).toEqual(2);
+        })
+    })
+
+    describe("Editing a comment", () => {
+        const action = editCommentAction("A", "C", "new comment")
+
+        beforeEach(() => {
+            newState = newsfeedReducer(oldState, action);
+        })
+
+        it("changes the content of the comment", () => {
+            expect(newState.posts[0].comments[0].content).toEqual("new comment");
         })
     })
 });

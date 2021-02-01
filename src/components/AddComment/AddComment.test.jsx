@@ -1,13 +1,14 @@
 import AddComment from "./AddComment";
 import React from "react";
 import {shallow} from "enzyme";
+import {ENTER_KEY_CODE} from "../constants";
 
 describe("Add Comment", () => {
     let wrapper;
     const mockOnPostComment = jest.fn();
 
     beforeEach(() => {
-        wrapper = shallow(<AddComment onPostComment={mockOnPostComment}/>)
+        wrapper = shallow(<AddComment onComment={mockOnPostComment}/>)
         Date.now = jest.fn()
         Date.now.mockReturnValue(Date.parse("2021-01-01"))
     })
@@ -16,12 +17,12 @@ describe("Add Comment", () => {
         const postText = "hello world comment";
 
         beforeEach(() => {
-            wrapper.find("input").simulate("change", {target: {value: postText}})
+            wrapper.find("AddCommentInput").simulate("change", {target: {value: postText}})
         })
 
         describe("when the user presses enter", () => {
             beforeEach(() => {
-                wrapper.find("input").simulate("keypress", {keyCode: 13});
+                wrapper.find("AddCommentInput").simulate("keypress", {charCode: ENTER_KEY_CODE});
             })
 
             it("calls onPostComment with the text", () => {
@@ -37,7 +38,7 @@ describe("Add Comment", () => {
 
     describe("when the user hasn't entered anything", () => {
         beforeEach(() => {
-            wrapper.find("input").simulate("keyDown", {keyCode: 13});
+            wrapper.find("AddCommentInput").simulate("keypress", {charCode: 13});
         })
 
         describe("when the user clicks the post button", () => {
