@@ -12,8 +12,8 @@ import {
     primaryTextColor,
     secondaryTextColor
 } from "../../sharedStyles/colors";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 import CommentSectionContainer from "../CommentSection/CommentSectionContainer";
 
 export default function Post({post}) {
@@ -29,7 +29,8 @@ export default function Post({post}) {
             </NewsfeedCardContentHeading>
             <PostText>{post.content}</PostText>
             <div>
-                <span style={{color: post.likes > 0 ? secondaryTextColor : grayedOutTextColor}}>{post.likes} Likes</span>
+                <span
+                    style={{color: post.likes > 0 ? secondaryTextColor : grayedOutTextColor}}>{post.likes} Likes</span>
                 <span>&nbsp;&#8226;&nbsp;</span>
                 <span style={{color: grayedOutTextColor}}>0 Comments</span>
             </div>

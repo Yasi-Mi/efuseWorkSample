@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import Newsfeed from "./Newsfeed";
 import Post from "../Post/Post";
 

@@ -1,5 +1,5 @@
 import CommentSection from "./CommentSection";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import React from "react";
 
 describe("CommentSection", () => {

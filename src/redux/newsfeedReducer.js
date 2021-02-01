@@ -1,5 +1,5 @@
 import {ADD_POST_ACTION_TYPE, LIKE_POST_ACTION} from "./actionTypes";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 const initialState = {
     currentUser: {
@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export function newsfeedReducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case ADD_POST_ACTION_TYPE:
             const newPost = {
                 id: uuidv4(),

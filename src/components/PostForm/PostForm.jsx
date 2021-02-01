@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import styled from "styled-components"
 import {
-    secondaryTextColor,
     primaryButtonColor,
     primaryButtonHover,
     primaryButtonTextColor,
-    primaryTextColor
+    primaryTextColor,
+    secondaryTextColor
 } from "../../sharedStyles/colors";
 import {
     Avatar,

@@ -4,19 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {combineReducers, createStore} from "redux";
-import { newsfeedReducer } from "./redux/newsfeedReducer";
-import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import {newsfeedReducer} from "./redux/newsfeedReducer";
+import {Provider} from "react-redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 
-const store = createStore(combineReducers({ newsfeed: newsfeedReducer }), composeWithDevTools())
+const store = createStore(combineReducers({newsfeed: newsfeedReducer}), composeWithDevTools())
 
 ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-          <App />
-      </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
