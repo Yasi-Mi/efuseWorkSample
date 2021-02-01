@@ -1,11 +1,12 @@
 import React, {useState} from "react"
 import styled from "styled-components"
-import {AvatarSmall, PostActionButton, ReactionCount} from "../../sharedComponents/StyledComponents";
+import {ReactionCount} from "../../sharedComponents/StyledComponents";
 import {blueTextColor, commentBackground, primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
 import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/PostedTimeFormatted";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHeart, faPencilAlt, faTrash} from "@fortawesome/free-solid-svg-icons"
 import {ENTER_KEY_CODE} from "../constants";
+import {AvatarSmall} from "../../sharedComponents/Avatar";
+import {InteractButton} from "../../sharedComponents/InteractButton";
 
 export default function Comment({comment, onLike, onEdit, onDelete}) {
     const [newContent, setNewContent] = useState(comment.content)
@@ -29,7 +30,7 @@ export default function Comment({comment, onLike, onEdit, onDelete}) {
 
     return <CommentStyle>
         <AvatarMargin>
-            <AvatarSmall src={`avatars/${comment.userAvatar}`}/>
+            <AvatarSmall image={comment.userAvatar}/>
         </AvatarMargin>
         <CommentBox>
             <CommentHeader>
@@ -44,9 +45,9 @@ export default function Comment({comment, onLike, onEdit, onDelete}) {
                 <CommentContent>{comment.content}</CommentContent> }
             <CommentActions>
                 <ReactionCount count={comment.likes}>{comment.likes} Likes </ReactionCount> |
-                <PostActionButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like </PostActionButton> |
-                <PostActionButton onClick={onEditClick}><FontAwesomeIcon icon={faPencilAlt}/> Edit </PostActionButton> |
-                <PostActionButton onClick={onDelete}><FontAwesomeIcon icon={faTrash}/> Delete</PostActionButton>
+                <InteractButton onClick={onLike} icon={faHeart} text="Like"/> |
+                <InteractButton onClick={onEditClick} icon={faPencilAlt} text="Edit"/> |
+                <InteractButton onClick={onDelete} icon={faTrash} text="Delete"/>
             </CommentActions>
         </CommentBox>
     </CommentStyle>

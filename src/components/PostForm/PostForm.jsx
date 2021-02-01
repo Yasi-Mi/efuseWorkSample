@@ -9,12 +9,12 @@ import {
     secondaryTextColor
 } from "../../sharedComponents/colors";
 import {
-    Avatar,
     AvatarFlex,
     NewsfeedCard,
     NewsfeedCardContentHeading,
     NewsfeedCardContentTop
 } from "../../sharedComponents/StyledComponents";
+import {AvatarLarge} from "../../sharedComponents/Avatar";
 
 export default function PostForm({avatar, onPost}) {
     const [text, setText] = useState("");
@@ -31,7 +31,7 @@ export default function PostForm({avatar, onPost}) {
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
-                <AvatarFlex><Avatar src={`avatars/${avatar}`} alt="avatar"/></AvatarFlex>
+                <AvatarFlex><AvatarLarge image={avatar}/></AvatarFlex>
                 <TextArea value={text} placeholder={"What is on your mind?"} onChange={updateText}/>
             </NewsfeedCardContentHeading>
         </NewsfeedCardContentTop>

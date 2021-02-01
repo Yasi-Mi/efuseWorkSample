@@ -9,7 +9,7 @@ import {v4 as uuidv4} from 'uuid';
 const initialState = {
     currentUser: {
         name: "Yasi Minachi",
-        avatar: "image (23).png",
+        avatar: "yasi-avatar.png",
         occupation: "Software Developer"
     },
     currentLocation: "OH, USA",

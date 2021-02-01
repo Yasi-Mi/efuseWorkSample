@@ -5,24 +5,6 @@ export const ReactionCount = styled.span`
     color: ${props => props.count > 0 ? secondaryTextColor : grayedOutTextColor}
 `
 
-export const Avatar = styled.img`
-    object-fit: cover;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 4rem;
-    border: 1px solid black;
-    margin-right: 1rem;
-`
-
-export const AvatarSmall = styled.img`
-    object-fit: cover;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 3rem;
-    border: 1px solid black;
-    margin-right: 1rem;
-`
-
 export const AvatarFlex = styled.div`
     flex-grow: 1;
 `
@@ -42,16 +24,3 @@ export const NewsfeedCardContentTop = styled.div`
 export const NewsfeedCardContentHeading = styled.div`
     display: flex;
 `;
-
-export const PostActionButton = styled.button`
-    background: transparent;
-    border: none;
-    outline: none;
-    color: ${secondaryTextColor};
-    font-size: 1rem;
-    
-    :hover {
-        color: ${primaryTextColor}
-    }
-`;
-PostActionButton.displayName = "PostActionButton";

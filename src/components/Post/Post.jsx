@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components"
 import {
-    Avatar,
     NewsfeedCard,
     NewsfeedCardContentHeading,
     NewsfeedCardContentTop, ReactionCount
@@ -15,12 +14,13 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 import CommentSectionContainer from "../CommentSection/CommentSectionContainer";
 import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/PostedTimeFormatted";
+import {AvatarLarge} from "../../sharedComponents/Avatar";
 
 export default function Post({post}) {
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
-                <Avatar src={`avatars/${post.userAvatar}`} alt="avatar"/>
+                <AvatarLarge image={post.userAvatar}/>
                 <div>
                     <Name>Yasi Minachi</Name>
                     <Location><FontAwesomeIcon icon={faMapMarkerAlt}/> {post.location}</Location>

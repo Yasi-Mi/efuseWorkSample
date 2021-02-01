@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import moment from "moment";
-import {AvatarSmall} from "../../sharedComponents/StyledComponents";
 import styled from "styled-components"
 import {primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
 import {ENTER_KEY_CODE} from "../constants";
+import {AvatarSmall} from "../../sharedComponents/Avatar";
 
 export default function AddComment({onComment, avatar}) {
     const [text, setText] = useState("")
@@ -20,7 +20,7 @@ export default function AddComment({onComment, avatar}) {
     };
 
     return <AddCommentContainer>
-        <div><AvatarSmall src={`avatars/${avatar}`}/></div>
+        <div><AvatarSmall image={avatar}/></div>
         <AddCommentInput value={text} onChange={onInputChange} onKeyPress={onKeypress}/>
     </AddCommentContainer>
 }
