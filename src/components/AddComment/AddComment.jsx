@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import moment from "moment";
+import {AvatarSmall} from "../../sharedStyles/StyledComponents";
+import styled from "styled-components"
+import {primaryTextColor, secondaryTextColor} from "../../sharedStyles/colors";
 
 const ENTER_KEY_CODE = 13
 
-export default function AddComment({onPostComment}) {
+export default function AddComment({onPostComment, avatar}) {
     const [text, setText] = useState("")
 
     const onInputChange = event => {
@@ -11,13 +14,31 @@ export default function AddComment({onPostComment}) {
     }
 
     const onKeypress = event => {
-        if (event.keyCode === ENTER_KEY_CODE) {
+        if (event.charCode === ENTER_KEY_CODE) {
             onPostComment(text, moment().toISOString())
             setText("")
         }
     };
 
-    return <div>
-        <input value={text} onChange={onInputChange} onKeyPress={onKeypress}/>
-    </div>
+    return <AddCommentContainer>
+        <AvatarSmall src={`avatars/${avatar}`}/>
+        <AddCommentInput value={text} onChange={onInputChange} onKeyPress={onKeypress}/>
+    </AddCommentContainer>
 }
+
+const AddCommentContainer = styled.div`
+    display: flex;
+    margin: 1rem 0;
+`
+
+const AddCommentInput = styled.input`
+    height: 2rem;
+    margin: .5rem;
+    border-radius: 1rem;
+    outline: none;
+    padding: 0 .5rem;
+    color: ${primaryTextColor};
+    border: 1px solid ${secondaryTextColor};
+    width: 64%;
+`
+AddCommentInput.displayName = "AddCommentInput"

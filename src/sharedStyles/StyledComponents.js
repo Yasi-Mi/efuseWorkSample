@@ -10,6 +10,15 @@ export const Avatar = styled.img`
     margin-right: 1rem;
 `
 
+export const AvatarSmall = styled.img`
+    object-fit: cover;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 3rem;
+    border: 1px solid black;
+    margin-right: 1rem;
+`
+
 export const AvatarFlex = styled.div`
     flex-grow: 1;
 `
