@@ -1,11 +1,18 @@
-import {likePostAction} from "../../redux/actionCreators";
+import {addCommentAction, likePostAction} from "../../redux/actionCreators";
 import {connect} from "react-redux";
 import CommentSection from "./CommentSection";
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapStateToProps(state) {
     return {
-        onLike: () => dispatch(likePostAction(ownProps.postID))
+        avatar: state.newsfeed.currentUser.avatar
     }
 }
 
-export default connect(undefined, mapDispatchToProps)(CommentSection)
+function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        onLike: () => dispatch(likePostAction(ownProps.postID)),
+        onComment: (content, postedTime) => dispatch(addCommentAction(ownProps.postID, content, postedTime))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentSection)

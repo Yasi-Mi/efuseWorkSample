@@ -1,6 +1,5 @@
 import React from 'react';
 import {shallow} from "enzyme";
-import {Avatar} from "../../sharedComponents/StyledComponents";
 import Comment from "./Comment";
 
 describe("Comment", () => {

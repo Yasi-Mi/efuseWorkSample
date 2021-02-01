@@ -1,8 +1,8 @@
 import CommentSection from "./CommentSection";
 import {shallow} from "enzyme";
 import React from "react";
-import AddCommentContainer from "../AddComment/AddCommentContainer";
 import CommentContainer from "../Comment/CommentContainer";
+import AddComment from "../AddComment/AddComment";
 
 describe("CommentSection", () => {
     let wrapper;
@@ -38,7 +38,7 @@ describe("CommentSection", () => {
             })
 
             it("expands the comments section and allows the user to add a comment", () => {
-                expect(wrapper.find(AddCommentContainer).length).toEqual(1);
+                expect(wrapper.find(AddComment).length).toEqual(1);
             })
         })
     })

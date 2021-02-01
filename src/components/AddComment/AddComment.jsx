@@ -6,7 +6,7 @@ import {primaryTextColor, secondaryTextColor} from "../../sharedComponents/color
 
 const ENTER_KEY_CODE = 13
 
-export default function AddComment({onPostComment, avatar}) {
+export default function AddComment({onComment, avatar}) {
     const [text, setText] = useState("")
 
     const onInputChange = event => {
@@ -15,7 +15,7 @@ export default function AddComment({onPostComment, avatar}) {
 
     const onKeypress = event => {
         if (event.charCode === ENTER_KEY_CODE) {
-            onPostComment(text, moment().toISOString())
+            onComment(text, moment().toISOString())
             setText("")
         }
     };
