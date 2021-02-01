@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import moment from "moment";
-import {AvatarSmall} from "../../sharedStyles/StyledComponents";
+import {AvatarSmall} from "../../sharedComponents/StyledComponents";
 import styled from "styled-components"
-import {primaryTextColor, secondaryTextColor} from "../../sharedStyles/colors";
+import {primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
 
 const ENTER_KEY_CODE = 13
 

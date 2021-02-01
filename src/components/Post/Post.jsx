@@ -4,22 +4,19 @@ import {
     Avatar,
     NewsfeedCard,
     NewsfeedCardContentHeading,
-    NewsfeedCardContentTop
-} from "../../sharedStyles/StyledComponents";
+    NewsfeedCardContentTop, ReactionCount
+} from "../../sharedComponents/StyledComponents";
 import {
-    grayedOutTextColor,
     blueTextColor,
     primaryTextColor,
     secondaryTextColor
-} from "../../sharedStyles/colors";
+} from "../../sharedComponents/colors";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 import CommentSectionContainer from "../CommentSection/CommentSectionContainer";
-import moment from "moment";
+import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/PostedTimeFormatted";
 
 export default function Post({post}) {
-    const minutesDiff = moment().diff(post.postedTime, "minutes")
-
     return <NewsfeedCard>
         <NewsfeedCardContentTop>
             <NewsfeedCardContentHeading>
@@ -27,15 +24,14 @@ export default function Post({post}) {
                 <div>
                     <Name>Yasi Minachi</Name>
                     <Location><FontAwesomeIcon icon={faMapMarkerAlt}/> {post.location}</Location>
-                    <TimePosted>{minutesDiff} {minutesDiff === 1 ? "minute" : "minutes"} ago</TimePosted>
+                    <TimePostedStyle><PostedTimeFormatted postedTime={post.postedTime}/></TimePostedStyle>
                 </div>
             </NewsfeedCardContentHeading>
             <PostText>{post.content}</PostText>
             <div>
-                <span
-                    style={{color: post.likes > 0 ? secondaryTextColor : grayedOutTextColor}}>{post.likes} Likes</span>
+                <ReactionCount count={post.likes}>{post.likes} Likes</ReactionCount>
                 <span>&nbsp;&#8226;&nbsp;</span>
-                <span style={{color: grayedOutTextColor}}>0 Comments</span>
+                <ReactionCount count={post.comments.length}>{post.comments.length} Comments</ReactionCount>
             </div>
         </NewsfeedCardContentTop>
         <CommentSectionContainer comments={post.comments} postID={post.id}/>
@@ -60,7 +56,7 @@ const Location = styled.div`
     font-weight: bold;
 `;
 
-const TimePosted = styled.div`
+const TimePostedStyle = styled.div`
     color: ${secondaryTextColor};
     font-size: 0.8rem;
 `;

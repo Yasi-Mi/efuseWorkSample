@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import {borderGray} from "./colors";
+import {borderGray, grayedOutTextColor, secondaryTextColor} from "./colors";
+
+export const ReactionCount = styled.span`
+    color: ${props => props.count > 0 ? secondaryTextColor : grayedOutTextColor}
+`
 
 export const Avatar = styled.img`
     object-fit: cover;

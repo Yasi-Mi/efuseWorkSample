@@ -1,12 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import {AvatarSmall} from "../../sharedStyles/StyledComponents";
-import {blueTextColor, commentBackground, primaryTextColor, secondaryTextColor} from "../../sharedStyles/colors";
-import moment from "moment";
+import {AvatarSmall} from "../../sharedComponents/StyledComponents";
+import {blueTextColor, commentBackground, primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
+import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/PostedTimeFormatted";
 
 export default function Comment({comment}) {
-    const minutesDiff = moment().diff(comment.postedTime, "minutes")
-
     return <CommentStyle>
         <AvatarMargin>
             <AvatarSmall src={`avatars/${comment.userAvatar}`}/>
@@ -17,12 +15,19 @@ export default function Comment({comment}) {
                     <Name>{comment.username}</Name>
                     <Occupation>{comment.occupation}</Occupation>
                 </div>
-                <CommentTime>{minutesDiff} {minutesDiff === 1 ? "minute" : "minutes"} ago</CommentTime>
+                <CommentTimeStyle><PostedTimeFormatted postedTime={comment.postedTime}/></CommentTimeStyle>
             </CommentHeader>
             <CommentContent>{comment.content}</CommentContent>
+            <CommentActions>
+            </CommentActions>
         </CommentBox>
     </CommentStyle>
 }
+
+const CommentActions = styled.div`
+    display: flex;
+    color: ${secondaryTextColor}
+`
 
 const AvatarMargin = styled.div`
     margin-top: 2rem;
@@ -42,7 +47,7 @@ const Occupation = styled.div`
     color: ${blueTextColor}
 `
 
-const CommentTime = styled.div`
+const CommentTimeStyle = styled.div`
     color: ${secondaryTextColor};
     text-align: right;
 `

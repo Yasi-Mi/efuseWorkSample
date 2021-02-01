@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCommentDots, faHeart} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import {commentSectionBackground, primaryTextColor, secondaryTextColor} from "../../sharedStyles/colors";
+import {commentSectionBackground, primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
 import AddCommentContainer from "../AddComment/AddCommentContainer";
 import Comment from "../Comment/Comment";
 

@@ -7,14 +7,14 @@ import {
     primaryButtonTextColor,
     primaryTextColor,
     secondaryTextColor
-} from "../../sharedStyles/colors";
+} from "../../sharedComponents/colors";
 import {
     Avatar,
     AvatarFlex,
     NewsfeedCard,
     NewsfeedCardContentHeading,
     NewsfeedCardContentTop
-} from "../../sharedStyles/StyledComponents";
+} from "../../sharedComponents/StyledComponents";
 
 export default function PostForm({avatar, onPost}) {
     const [text, setText] = useState("");
