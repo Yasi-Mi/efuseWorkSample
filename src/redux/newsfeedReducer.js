@@ -33,6 +33,7 @@ export function newsfeedReducer(state = initialState, action) {
             return {...state, ...{posts: updatedPosts}};
         case ADD_COMMENT_ACTION_TYPE:
             const newComment = {
+                id: uuidv4(),
                 content: action.payload.content,
                 postedTime: action.payload.postedTime,
                 username: state.currentUser.name,

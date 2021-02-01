@@ -38,7 +38,7 @@ export default function Post({post}) {
                 <span style={{color: grayedOutTextColor}}>0 Comments</span>
             </div>
         </NewsfeedCardContentTop>
-        <CommentSectionContainer postID={post.id}/>
+        <CommentSectionContainer comments={post.comments} postID={post.id}/>
     </NewsfeedCard>
 }
 

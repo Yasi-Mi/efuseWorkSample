@@ -2,13 +2,19 @@ import CommentSection from "./CommentSection";
 import {shallow} from "enzyme";
 import React from "react";
 import AddCommentContainer from "../AddComment/AddCommentContainer";
+import Comment from "../Comment/Comment";
 
 describe("CommentSection", () => {
     let wrapper;
     const onLike = jest.fn();
 
+    const comments = [
+        {content: "dummy"},
+        {content: "2"}
+    ]
+
     beforeEach(() => {
-        wrapper = shallow(<CommentSection onLike={onLike}/>);
+        wrapper = shallow(<CommentSection onLike={onLike} comments={comments}/>);
     })
 
     describe("when the user presses the like button", () => {
@@ -21,11 +27,7 @@ describe("CommentSection", () => {
         })
     })
 
-    describe("when there are no comments", () => {
-        beforeEach(() => {
-            wrapper = shallow(<CommentSection onLike={onLike} comments={[]}/>);
-        })
-
+    describe("the add comment section", () => {
         it("does not show the add a comment section", () => {
             expect(wrapper.find(AddCommentContainer).length).toEqual(0);
         })
@@ -40,4 +42,12 @@ describe("CommentSection", () => {
             })
         })
     })
+
+    describe("comments", () => {
+        it("displays all the comments", () => {
+            expect(wrapper.find(Comment).length).toEqual(2);
+            expect(wrapper.find(Comment).at(0).props().comment).toEqual(comments[0]);
+            expect(wrapper.find(Comment).at(1).props().comment).toEqual(comments[1]);
+        })
+    });
 })
