@@ -1,6 +1,6 @@
 import {
     ADD_COMMENT_ACTION_TYPE,
-    ADD_POST_ACTION_TYPE, EDIT_COMMENT_ACTION_TYPE,
+    ADD_POST_ACTION_TYPE, DELETE_COMMENT_ACTION_TYPE, EDIT_COMMENT_ACTION_TYPE,
     LIKE_COMMENT_ACTION_TYPE,
     LIKE_POST_ACTION_TYPE
 } from "./actionTypes";
@@ -55,6 +55,11 @@ export function newsfeedReducer(state = initialState, action) {
         case EDIT_COMMENT_ACTION_TYPE: {
             return updateComment(state, action.payload.postID, action.payload.commentID, comment => {
                 return {...comment, ...{content: action.payload.newContent}}
+            })
+        }
+        case DELETE_COMMENT_ACTION_TYPE: {
+            return updatePost(state, action.payload.postID, post => {
+                return {...post, ...{comments: post.comments.filter(comment => comment.id !== action.payload.commentID)}}
             })
         }
         default:

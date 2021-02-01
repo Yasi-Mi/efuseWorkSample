@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHeart, faPencilAlt, faTrash} from "@fortawesome/free-solid-svg-icons"
 import {ENTER_KEY_CODE} from "../constants";
 
-export default function Comment({comment, onLike, onEdit}) {
+export default function Comment({comment, onLike, onEdit, onDelete}) {
     const [newContent, setNewContent] = useState(comment.content)
     const [editMode, setEditMode] = useState(false)
 
@@ -46,7 +46,7 @@ export default function Comment({comment, onLike, onEdit}) {
                 <ReactionCount count={comment.likes}>{comment.likes} Likes </ReactionCount> |
                 <PostActionButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like </PostActionButton> |
                 <PostActionButton onClick={onEditClick}><FontAwesomeIcon icon={faPencilAlt}/> Edit </PostActionButton> |
-                <PostActionButton><FontAwesomeIcon icon={faTrash}/> Delete</PostActionButton>
+                <PostActionButton onClick={onDelete}><FontAwesomeIcon icon={faTrash}/> Delete</PostActionButton>
             </CommentActions>
         </CommentBox>
     </CommentStyle>

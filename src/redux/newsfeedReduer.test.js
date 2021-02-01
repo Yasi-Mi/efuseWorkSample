@@ -1,5 +1,12 @@
 import {newsfeedReducer} from "./newsfeedReducer";
-import {addCommentAction, addPostAction, editCommentAction, likeCommentAction, likePostAction} from "./actionCreators";
+import {
+    addCommentAction,
+    addPostAction,
+    deleteCommentAction,
+    editCommentAction,
+    likeCommentAction,
+    likePostAction
+} from "./actionCreators";
 
 describe("newsfeedReducer", () => {
 
@@ -17,6 +24,11 @@ describe("newsfeedReducer", () => {
                 likes: 1,
                 comments: [{
                     id: "C",
+                    content: "original content",
+                    likes: 1,
+                },
+                {
+                    id: "D",
                     content: "original content",
                     likes: 1,
                 }]
@@ -88,7 +100,7 @@ describe("newsfeedReducer", () => {
         })
 
         it("only adds the comment to the correct post", () => {
-            expect(newState.posts[0].comments.length).toEqual(1);
+            expect(newState.posts[0].comments.length).toEqual(2);
         })
     })
 
@@ -113,6 +125,19 @@ describe("newsfeedReducer", () => {
 
         it("changes the content of the comment", () => {
             expect(newState.posts[0].comments[0].content).toEqual("new comment");
+        })
+    })
+
+    describe("Deleting a comment", () => {
+        const action = deleteCommentAction("A", "D")
+
+        beforeEach(() => {
+            newState = newsfeedReducer(oldState, action);
+        })
+
+        it("deletes the comment", () => {
+            expect(newState.posts[0].comments.length).toEqual(1);
+            expect(newState.posts[0].comments[0].id).toEqual("C");
         })
     })
 });

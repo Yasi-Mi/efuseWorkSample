@@ -15,9 +15,10 @@ describe("Comment", () => {
     }
     const mockOnLike = jest.fn();
     const mockOnEdit = jest.fn();
+    const mockOnDelete = jest.fn();
 
     beforeEach(() => {
-        wrapper = shallow(<Comment comment={comment} onLike={mockOnLike} onEdit={mockOnEdit}/>)
+        wrapper = shallow(<Comment comment={comment} onLike={mockOnLike} onEdit={mockOnEdit} onDelete={mockOnDelete}/>)
     })
 
     it("renders the text", () => {
@@ -43,6 +44,16 @@ describe("Comment", () => {
 
         it("calls onLike", () => {
             expect(mockOnLike.mock.calls.length).toEqual(1);
+        })
+    })
+
+    describe("when the user presses the delete button", () => {
+        beforeEach(() => {
+            wrapper.find("PostActionButton").at(2).simulate("click")
+        })
+
+        it("calls onDelete", () => {
+            expect(mockOnDelete.mock.calls.length).toEqual(1);
         })
     })
 
