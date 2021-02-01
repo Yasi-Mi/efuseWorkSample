@@ -1,8 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import {AvatarSmall} from "../../sharedComponents/StyledComponents";
+import {AvatarSmall, PostActionButton, ReactionCount} from "../../sharedComponents/StyledComponents";
 import {blueTextColor, commentBackground, primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
 import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/PostedTimeFormatted";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faHeart, faPencilAlt, faTrash} from "@fortawesome/free-solid-svg-icons"
 
 export default function Comment({comment}) {
     return <CommentStyle>
@@ -19,14 +21,17 @@ export default function Comment({comment}) {
             </CommentHeader>
             <CommentContent>{comment.content}</CommentContent>
             <CommentActions>
+                <ReactionCount count={comment.likes}>{comment.likes} Likes </ReactionCount> |
+                <PostActionButton><FontAwesomeIcon icon={faHeart}/> Like </PostActionButton> |
+                <PostActionButton><FontAwesomeIcon icon={faPencilAlt}/> Edit </PostActionButton> |
+                <PostActionButton><FontAwesomeIcon icon={faTrash}/> Delete</PostActionButton>
             </CommentActions>
         </CommentBox>
     </CommentStyle>
 }
 
 const CommentActions = styled.div`
-    display: flex;
-    color: ${secondaryTextColor}
+    color: ${secondaryTextColor};
 `
 
 const AvatarMargin = styled.div`

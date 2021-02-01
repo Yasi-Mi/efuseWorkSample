@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCommentDots, faHeart} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import {commentSectionBackground, primaryTextColor, secondaryTextColor} from "../../sharedComponents/colors";
+import {commentSectionBackground, secondaryTextColor} from "../../sharedComponents/colors";
 import AddCommentContainer from "../AddComment/AddCommentContainer";
 import Comment from "../Comment/Comment";
+import {PostActionButton} from "../../sharedComponents/StyledComponents";
 
 export default function CommentSection({onLike, comments, postID}) {
     const [addCommentExpanded, setAddCommentExpanded] = useState(false);
@@ -15,8 +16,8 @@ export default function CommentSection({onLike, comments, postID}) {
 
     return <LikeCommentSectionStyle>
         <LikeCommentButtons>
-            <LikeCommentButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like</LikeCommentButton>
-            <LikeCommentButton onClick={onCommentClick}><FontAwesomeIcon icon={faCommentDots}/> Comment</LikeCommentButton>
+            <PostActionButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like</PostActionButton>
+            <PostActionButton onClick={onCommentClick}><FontAwesomeIcon icon={faCommentDots}/> Comment</PostActionButton>
         </LikeCommentButtons>
         {addCommentExpanded && <AddCommentContainer postID={postID}/>}
         {comments.map(comment => <Comment key={`comment-${comment.id}`} comment={comment}/>)}
@@ -36,17 +37,3 @@ const LikeCommentButtons = styled.div`
     font-weight: bold;
     display: flex;
 `;
-
-const LikeCommentButton = styled.button`
-    margin-right: 1rem;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: ${secondaryTextColor};
-    font-size: 1rem;
-    
-    :hover {
-        color: ${primaryTextColor}
-    }
-`;
-LikeCommentButton.displayName = "LikeCommentButton";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {borderGray, grayedOutTextColor, secondaryTextColor} from "./colors";
+import {borderGray, grayedOutTextColor, primaryTextColor, secondaryTextColor} from "./colors";
 
 export const ReactionCount = styled.span`
     color: ${props => props.count > 0 ? secondaryTextColor : grayedOutTextColor}
@@ -42,3 +42,16 @@ export const NewsfeedCardContentTop = styled.div`
 export const NewsfeedCardContentHeading = styled.div`
     display: flex;
 `;
+
+export const PostActionButton = styled.button`
+    background: transparent;
+    border: none;
+    outline: none;
+    color: ${secondaryTextColor};
+    font-size: 1rem;
+    
+    :hover {
+        color: ${primaryTextColor}
+    }
+`;
+PostActionButton.displayName = "PostActionButton";
