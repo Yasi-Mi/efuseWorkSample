@@ -21,7 +21,7 @@ export default function AddComment({onPostComment, avatar}) {
     };
 
     return <AddCommentContainer>
-        <AvatarSmall src={`avatars/${avatar}`}/>
+        <div><AvatarSmall src={`avatars/${avatar}`}/></div>
         <AddCommentInput value={text} onChange={onInputChange} onKeyPress={onKeypress}/>
     </AddCommentContainer>
 }
@@ -39,6 +39,6 @@ const AddCommentInput = styled.input`
     padding: 0 .5rem;
     color: ${primaryTextColor};
     border: 1px solid ${secondaryTextColor};
-    width: 64%;
+    width: 85%;
 `
 AddCommentInput.displayName = "AddCommentInput"

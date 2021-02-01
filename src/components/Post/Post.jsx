@@ -8,7 +8,7 @@ import {
 } from "../../sharedStyles/StyledComponents";
 import {
     grayedOutTextColor,
-    locationTextColor,
+    blueTextColor,
     primaryTextColor,
     secondaryTextColor
 } from "../../sharedStyles/colors";
@@ -55,7 +55,7 @@ const Name = styled.div`
 `;
 
 const Location = styled.div`
-    color: ${locationTextColor};
+    color: ${blueTextColor};
     font-size: 1rem;
     font-weight: bold;
 `;
