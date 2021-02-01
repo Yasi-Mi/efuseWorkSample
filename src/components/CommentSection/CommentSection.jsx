@@ -4,8 +4,8 @@ import {faCommentDots, faHeart} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import {commentSectionBackground, secondaryTextColor} from "../../sharedComponents/colors";
 import AddCommentContainer from "../AddComment/AddCommentContainer";
-import Comment from "../Comment/Comment";
 import {PostActionButton} from "../../sharedComponents/StyledComponents";
+import CommentContainer from "../Comment/CommentContainer";
 
 export default function CommentSection({onLike, comments, postID}) {
     const [addCommentExpanded, setAddCommentExpanded] = useState(false);
@@ -20,7 +20,7 @@ export default function CommentSection({onLike, comments, postID}) {
             <PostActionButton onClick={onCommentClick}><FontAwesomeIcon icon={faCommentDots}/> Comment</PostActionButton>
         </LikeCommentButtons>
         {addCommentExpanded && <AddCommentContainer postID={postID}/>}
-        {comments.map(comment => <Comment key={`comment-${comment.id}`} comment={comment}/>)}
+        {comments.map(comment => <CommentContainer key={`comment-${comment.id}`} comment={comment} postID={postID}/>)}
     </LikeCommentSectionStyle>
 }
 

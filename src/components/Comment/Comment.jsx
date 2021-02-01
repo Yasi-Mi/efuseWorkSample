@@ -6,7 +6,7 @@ import PostedTimeFormatted from "../../sharedComponents/PostedTimeFormatting/Pos
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHeart, faPencilAlt, faTrash} from "@fortawesome/free-solid-svg-icons"
 
-export default function Comment({comment}) {
+export default function Comment({comment, onLike}) {
     return <CommentStyle>
         <AvatarMargin>
             <AvatarSmall src={`avatars/${comment.userAvatar}`}/>
@@ -22,7 +22,7 @@ export default function Comment({comment}) {
             <CommentContent>{comment.content}</CommentContent>
             <CommentActions>
                 <ReactionCount count={comment.likes}>{comment.likes} Likes </ReactionCount> |
-                <PostActionButton><FontAwesomeIcon icon={faHeart}/> Like </PostActionButton> |
+                <PostActionButton onClick={onLike}><FontAwesomeIcon icon={faHeart}/> Like </PostActionButton> |
                 <PostActionButton><FontAwesomeIcon icon={faPencilAlt}/> Edit </PostActionButton> |
                 <PostActionButton><FontAwesomeIcon icon={faTrash}/> Delete</PostActionButton>
             </CommentActions>

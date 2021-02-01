@@ -9,7 +9,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-    console.log(ownProps)
     return {
         onPostComment: (content, postedTime) => dispatch(addCommentAction(ownProps.postID, content, postedTime))
     }

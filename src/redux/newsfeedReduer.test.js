@@ -1,5 +1,5 @@
 import {newsfeedReducer} from "./newsfeedReducer";
-import {addCommentAction, addPostAction, likePostAction} from "./actionCreators";
+import {addCommentAction, addPostAction, likeCommentAction, likePostAction} from "./actionCreators";
 
 describe("newsfeedReducer", () => {
 
@@ -15,7 +15,11 @@ describe("newsfeedReducer", () => {
                 id: "A",
                 content: "something",
                 likes: 1,
-                comments: []
+                comments: [{
+                    id: "C",
+                    content: "original content",
+                    likes: 1,
+                }]
             },
             {
                 id: "B",
@@ -84,7 +88,19 @@ describe("newsfeedReducer", () => {
         })
 
         it("only adds the comment to the correct post", () => {
-            expect(newState.posts[0].comments.length).toEqual(0);
+            expect(newState.posts[0].comments.length).toEqual(1);
+        })
+    })
+
+    describe("Liking a comment", () => {
+        const action = likeCommentAction("A", "C")
+
+        beforeEach(() => {
+            newState = newsfeedReducer(oldState, action);
+        })
+
+        it("increments the like of the comment", () => {
+            expect(newState.posts[0].comments[0].likes).toEqual(2);
         })
     })
 });

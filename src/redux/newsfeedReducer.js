@@ -1,4 +1,9 @@
-import {ADD_COMMENT_ACTION_TYPE, ADD_POST_ACTION_TYPE, LIKE_POST_ACTION_TYPE} from "./actionTypes";
+import {
+    ADD_COMMENT_ACTION_TYPE,
+    ADD_POST_ACTION_TYPE,
+    LIKE_COMMENT_ACTION_TYPE,
+    LIKE_POST_ACTION_TYPE
+} from "./actionTypes";
 import {v4 as uuidv4} from 'uuid';
 
 const initialState = {
@@ -26,11 +31,9 @@ export function newsfeedReducer(state = initialState, action) {
             }
             return {...state, ...{posts: [...state.posts, newPost]}}
         case LIKE_POST_ACTION_TYPE:
-            const updatedPosts = state.posts.map(post => {
-                return post.id === action.payload.postID ? {...post, ...{likes: post.likes + 1}} : post
-            })
-
-            return {...state, ...{posts: updatedPosts}};
+            return updatePost(state, action.payload.postID, (post) => {
+                return {...post, ...{likes: post.likes + 1}}
+            });
         case ADD_COMMENT_ACTION_TYPE:
             const newComment = {
                 id: uuidv4(),
@@ -40,13 +43,34 @@ export function newsfeedReducer(state = initialState, action) {
                 userAvatar: state.currentUser.avatar,
                 occupation: state.currentUser.occupation,
                 likes: 0,
-            }
-            const postsWithComment = state.posts.map(post => {
-                return post.id === action.payload.postID ? {...post, ...{comments: [...post.comments, newComment]}} : post
+            };
+            return updatePost(state, action.payload.postID, post => {
+                return {...post, ...{comments: [...post.comments, newComment]}}
+            });
+        case LIKE_COMMENT_ACTION_TYPE: {
+            return updateComment(state, action.payload.postID, action.payload.commentID, comment => {
+                return {...comment, ...{likes: comment.likes + 1}}
             })
-
-            return {...state, ...{posts: postsWithComment}};
+        }
         default:
             return state
     }
+}
+
+function updatePost(state, postID, edit) {
+    const updatedPosts = state.posts.map(post => {
+        return post.id === postID ? edit(post) : post
+    })
+    return {...state, ...{posts: updatedPosts}};
+}
+
+function updateComment(state, postID, commentID, edit) {
+    return updatePost(state, postID, post => {
+        return {...post, ...{comments:
+                post.comments.map(comment => {
+                    return comment.id === commentID ? edit(comment) : comment
+                })
+            }
+        }
+    });
 }

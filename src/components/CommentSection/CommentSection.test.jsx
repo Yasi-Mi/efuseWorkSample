@@ -2,7 +2,7 @@ import CommentSection from "./CommentSection";
 import {shallow} from "enzyme";
 import React from "react";
 import AddCommentContainer from "../AddComment/AddCommentContainer";
-import Comment from "../Comment/Comment";
+import CommentContainer from "../Comment/CommentContainer";
 
 describe("CommentSection", () => {
     let wrapper;
@@ -45,9 +45,9 @@ describe("CommentSection", () => {
 
     describe("comments", () => {
         it("displays all the comments", () => {
-            expect(wrapper.find(Comment).length).toEqual(2);
-            expect(wrapper.find(Comment).at(0).props().comment).toEqual(comments[0]);
-            expect(wrapper.find(Comment).at(1).props().comment).toEqual(comments[1]);
+            expect(wrapper.find(CommentContainer).length).toEqual(2);
+            expect(wrapper.find(CommentContainer).at(0).props().comment).toEqual(comments[0]);
+            expect(wrapper.find(CommentContainer).at(1).props().comment).toEqual(comments[1]);
         })
     });
 })
